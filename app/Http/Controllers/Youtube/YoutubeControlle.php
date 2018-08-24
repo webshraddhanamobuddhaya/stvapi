@@ -28,8 +28,14 @@ class YoutubeControlle extends Controller
 
         $liveStream_videoID = $dataAll->get('0')['id']['videoId'];
 
+        $youtubeID = [
+            'video_id' => $liveStream_videoID,
+            'url1' => "https://youtu.be/$liveStream_videoID",
+            'url2' => "https://www.youtube.com/watch?v=$liveStream_videoID"
+        ];
 
-        return $dataAll;
+        return response($youtubeID, 200)
+                  ->header('Content-Type', 'text/plain');
 
     }
 }
