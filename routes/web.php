@@ -23,3 +23,6 @@ Route::group(['prefix'=>'latest_videos'],function(){
 });
 
 Route::get('video/{id}', 'Post\PostController@singleVideo')->where('id', '[0-9]+');
+
+// get livestram id
+Route::get('live_id', 'Youtube\YoutubeControlle@liveStream');
