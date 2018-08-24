@@ -30,8 +30,8 @@ class YoutubeControlle extends Controller
 
         $youtubeID = [
             'video_id' => $liveStream_videoID,
-            'url1' => "https://youtu.be/$liveStream_videoID",
-            'url2' => "https://www.youtube.com/watch?v=$liveStream_videoID"
+            'url_1' => "https://youtu.be/$liveStream_videoID",
+            'url_2' => "https://www.youtube.com/watch?v=$liveStream_videoID"
         ];
 
         return response($youtubeID, 200)
@@ -39,3 +39,4 @@ class YoutubeControlle extends Controller
 
     }
 }
+
