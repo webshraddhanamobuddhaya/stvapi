@@ -14,7 +14,7 @@ class YoutubeControlle extends Controller
     {
         $client = new \GuzzleHttp\Client();
 
-        $chanelID = 'UCM3bQBUJ0PEbgfe9lAw_Y3Q';
+        $chanelID = 'UCM3bQBUJ0PEbgfe9lAw_Y3Q'; // shraddha tv daily id;
         // $chanelID = 'UCu7cGbQEMgGk8TD0ZYucM5g';
         $apiKey = 'AIzaSyCLaZJEeGlLguMXIEyUxSj-hl4RMQMVAJQ';
 
