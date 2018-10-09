@@ -26,3 +26,8 @@ Route::get('video/{id}', 'Post\PostController@singleVideo')->where('id', '[0-9]+
 
 // get livestram id
 Route::get('live_id', 'Youtube\YoutubeControlle@liveStream');
+
+// Test Route
+
+Route::get('testdata','Temp\TempController@returnPortfolio');
+Route::get('test01','Post\PostController@test01');
