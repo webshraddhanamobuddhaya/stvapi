@@ -50,7 +50,11 @@ class PostController extends Controller
                         break;
 
                 }
-                $all_videos[] = $this->returnArray($post,$sourceType);
+                if ($sourceType=='youtube' || $sourceType=='facebook' || $sourceType=='vimeo')
+                {
+                    // Temp solution
+                    $all_videos[] = $this->returnArray($post,$sourceType);
+                }
                     
             }
             
