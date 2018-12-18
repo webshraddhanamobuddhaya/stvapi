@@ -10,8 +10,7 @@ class BannerController extends Controller
 {
     public function getBanners(){
         $postContent = Post::findOrFail(42429)->post_content;
-
-      
+    
         // Remove markups before content
         $text_after_simble = str_after($postContent, 'id=""]');
         // Remove markups after content
