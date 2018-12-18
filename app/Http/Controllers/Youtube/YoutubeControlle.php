@@ -14,7 +14,8 @@ class YoutubeControlle extends Controller
     {
         $client = new \GuzzleHttp\Client();
 
-        $chanelID = 'UCM3bQBUJ0PEbgfe9lAw_Y3Q'; // shraddha tv daily id;
+        $chanelID = 'UC1WREaxq8LRhdOOmzSFg2pA'; // shraddha tv Live id;
+        // $chanelID = 'UCM3bQBUJ0PEbgfe9lAw_Y3Q'; // shraddha tv daily id;
         // $chanelID = 'UCu7cGbQEMgGk8TD0ZYucM5g';
         $apiKey = 'AIzaSyCLaZJEeGlLguMXIEyUxSj-hl4RMQMVAJQ';
 
@@ -44,9 +45,6 @@ class YoutubeControlle extends Controller
 
         return response($youtubeID, 200)
                   ->header('Content-Type', 'text/plain');
-
-
-        
 
     }
 }
