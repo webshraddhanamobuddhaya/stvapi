@@ -39,7 +39,7 @@ class MessageController extends Controller
     
     public function get(Request $request)
     {
-    	return "Please ues post request instead of get";
+    	return "Please use post request instead of get";
     }
     
 }
