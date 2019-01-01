@@ -29,8 +29,11 @@ Route::get('live_id', 'Youtube\YoutubeControlle@liveStream');
 
 // Test Route
 
-// Route::get('testdata','Temp\TempController@returnPortfolio');
+Route::get('testdata','Temp\TempController@returnPortfolio');
+Route::get('newsfeed','Notifications\NewsFeedController@getNewsFeed');
 // Route::get('test01','Post\PostController@test01');
 
 // Banner Route
 Route::get('notifications/banners', 'Notifications\BannerController@getBanners');
+
+Route::get('documentation','Documentation\DocumentationController@documentation');

@@ -18,8 +18,14 @@ class TempController extends Controller
     {
         return $this->returnPortfolioAll('video', 10);
     }
+    
+    public function newsFeed()
+    {
+        return $this->returnPortfolioAll('quote', 3);
 
-    public function returnPortfolioAll($format, $count)
+    }
+
+    private function returnPortfolioAll($format, $count)
     {
         $posts = $this->posts();
 
@@ -30,12 +36,42 @@ class TempController extends Controller
         $count = $count;
         $init = 0;
 
+        $post_details = [];
+        $post_categories = [];   
+
         foreach ($posts as $post) {
-            foreach ($post->termTaxonomys as $data1) {
-                if($data1->taxonomy=='post_format'){
+            // $post_details[] = $post->termTaxonomys;
+            // $post_details['id'] = $post->ID;
+            // $post_details['title'] = $post->title;
+            // foreach ($post->termTaxonomys as $test) {
+            //     $post_details['term_taxonomys'][] = $test->taxonomy;
+            // }
+            // $post_details["{$post->ID}"] = $post->post_title;
+            foreach ($post->termTaxonomys as $key => $termTaxo) {
+                $post_base["{$termTaxo->taxonomy}.$key"] = Wp_term::find($termTaxo->term_id)->name;
+                // array_push($post_details,$termTaxo->taxonomy,Wp_term::find($termTaxo->term_id)->name);
+            }
+            $post_details = [
+                'post_id'=>$post->ID,
+                'post_title'=> $post->title,
+            ];
+            array_push($post_details,$post_base);
+            foreach ($post->termTaxonomys as $key => $termTaxonomy) {
+
+                // $post_details['details'][] = [
+                //     "{$termTaxonomy->taxonomy}"=> Wp_term::find($termTaxonomy->term_id)->name,
+                // ];
+                // $post_details[] = $termTaxonomy->taxonomy;
+                // $post_details[] = Wp_term::find($termTaxonomy->term_id)->name;
+                // $postAndTermTexnonomy[] = array([$termTaxonomy->taxonomy,Wp_term::find($termTaxonomy->term_id)->name]);
+                // if($termTaxonomy->taxonomy=='portfolio_tags'){
+
+                // $tags[] = Wp_term::find($termTaxonomy->term_id)->name;
+                // }
+                if($termTaxonomy->taxonomy=='post_format'){
 
                     // Get post format
-                    $post_format = substr(Wp_term::find($data1->term_id)->name,12); //post-format-
+                    $post_format = substr(Wp_term::find($termTaxonomy->term_id)->name,12); //post-format-
 
                     // Get thumbnail id
                     $thumbnail_id = $post->metadatas()->where('meta_key', '_thumbnail_id')->value('meta_value');
@@ -51,7 +87,7 @@ class TempController extends Controller
                     if($post_format==$format){
                         $init++;
                         $data[] = [
-                            // 'term_id' => $data1->term_id,
+                            // 'term_id' => $termTaxonomy->term_id,
                             'id' => $post->ID,
                             'post_date' => $post->post_date,
                             'post_title' => $post->post_title,
@@ -60,6 +96,8 @@ class TempController extends Controller
                             'video_url' => $video_url,
                             'source' => $source,
                             'post_format' => ucfirst($post_format),
+                            'categories' => [],
+                            'tags' => []
                             // 'init' => $init,
     
                         ];
@@ -69,11 +107,26 @@ class TempController extends Controller
                 }
             }
             if ($init == $count) break;
+            // array_push($post_details,$details);
+
 
 
         }
 
+        return $post_details;
         return $data;
+    }
+
+    /**
+     * Get tags related to the given post
+     * 
+     * @return Array tags
+     */
+    private function getPostAttr($taxonomy, $attribute)
+    {
+        if($taxonomy==$attribute){
+
+        }
     }
 
     /**
