@@ -37,3 +37,21 @@ Route::get('newsfeed','Notifications\NewsFeedController@getNewsFeed');
 Route::get('notifications/banners', 'Notifications\BannerController@getBanners');
 
 Route::get('documentation','Documentation\DocumentationController@documentation');
+
+
+/*
+|--------------------------------------------------------------------------
+| New Routes
+|--------------------------------------------------------------------------
+|
+*/
+
+// Updates
+Route::group(['prefix'=>'updates'], function () {
+    Route::get('/videos/{count?}', 'Updates\UpdatesController@videos')->where('count', '[0-9]+');
+    Route::get('/news/{count?}', 'Updates\UpdatesController@news')->where('count', '[0-9]+');
+    Route::get('/audios/{count?}', 'Updates\UpdatesController@audios')->where('count', '[0-9]+');
+});
+
+// Single Post
+Route::get('post/{id}', 'Post\SinglePostController@singlePost');

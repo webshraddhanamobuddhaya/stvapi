@@ -40,34 +40,10 @@ class TempController extends Controller
         $post_categories = [];   
 
         foreach ($posts as $post) {
-            // $post_details[] = $post->termTaxonomys;
-            // $post_details['id'] = $post->ID;
-            // $post_details['title'] = $post->title;
-            // foreach ($post->termTaxonomys as $test) {
-            //     $post_details['term_taxonomys'][] = $test->taxonomy;
-            // }
-            // $post_details["{$post->ID}"] = $post->post_title;
-            foreach ($post->termTaxonomys as $key => $termTaxo) {
-                $post_base["{$termTaxo->taxonomy}.$key"] = Wp_term::find($termTaxo->term_id)->name;
-                // array_push($post_details,$termTaxo->taxonomy,Wp_term::find($termTaxo->term_id)->name);
-            }
-            $post_details = [
-                'post_id'=>$post->ID,
-                'post_title'=> $post->title,
-            ];
-            array_push($post_details,$post_base);
+
             foreach ($post->termTaxonomys as $key => $termTaxonomy) {
 
-                // $post_details['details'][] = [
-                //     "{$termTaxonomy->taxonomy}"=> Wp_term::find($termTaxonomy->term_id)->name,
-                // ];
-                // $post_details[] = $termTaxonomy->taxonomy;
-                // $post_details[] = Wp_term::find($termTaxonomy->term_id)->name;
-                // $postAndTermTexnonomy[] = array([$termTaxonomy->taxonomy,Wp_term::find($termTaxonomy->term_id)->name]);
-                // if($termTaxonomy->taxonomy=='portfolio_tags'){
 
-                // $tags[] = Wp_term::find($termTaxonomy->term_id)->name;
-                // }
                 if($termTaxonomy->taxonomy=='post_format'){
 
                     // Get post format
